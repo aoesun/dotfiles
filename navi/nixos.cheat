@@ -1,0 +1,65 @@
+% nixos, nix, system
+
+# 检查当前 flake，但不构建系统
+nix flake check --no-build <flake>
+
+# 构建系统，但不激活
+sudo nixos-rebuild build --flake <flake>
+
+# 比较当前系统与刚构建的 result
+nix store diff-closures /run/current-system <result>
+
+# 临时激活配置，但不设为下次启动的默认项
+sudo nixos-rebuild test --flake <flake>
+
+# 构建并立即切换到新配置
+sudo nixos-rebuild switch --flake <flake>
+
+# 构建配置并设为下次启动项，但不立即激活
+sudo nixos-rebuild boot --flake <flake>
+
+# 回滚到上一个系统代际
+sudo nixos-rebuild switch --rollback
+
+# 查看系统代际
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+
+# 更新全部 flake 输入（只修改 flake.lock）
+nix flake update --flake <repo>
+
+# 只更新一个 flake 输入（例如 nixpkgs 或 home-manager）
+nix flake update <input> --flake <repo>
+
+# 查看 flake 提供的输出
+nix flake show <repo>
+
+# 查看 flake 输入及锁定信息
+nix flake metadata <repo>
+
+# 搜索 nixpkgs 软件包
+nix search nixpkgs <query>
+
+# 临时进入带有指定软件包的 shell
+nix shell nixpkgs#<package>
+
+# 查看当前运行的 NixOS 版本
+nixos-version
+
+# 查看当前运行的内核版本
+uname -r
+
+# 查看失败的 systemd 单元
+systemctl --failed
+
+# 查看本次启动的错误日志
+journalctl -b -p err
+
+# 优化 Nix Store 中重复的文件
+sudo nix store optimise
+
+$ flake: echo ~/nixos-config#nixos
+$ repo: echo ~/nixos-config
+$ result: echo ./result
+$ input: printf "nixpkgs\nhome-manager"
+$ query: echo chromium
+$ package: echo fastfetch

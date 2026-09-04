@@ -1,0 +1,4 @@
+% vmware, wayland, clipboard
+
+# Start Konsole through XWayland for VMware clipboard compatibility
+QT_QPA_PLATFORM=xcb konsole
