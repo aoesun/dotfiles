@@ -24,6 +24,18 @@ sudo nixos-rebuild switch --rollback
 # 查看系统代际
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 
+# 删除一个或多个指定系统代际（先查看列表并确认编号）
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations <generations>
+
+# 删除早于指定时间的系统代际
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations <age>
+
+# 预览当前不再被任何 GC root 引用、可以回收的 Store 路径
+sudo nix-store --gc --print-dead
+
+# 回收不再被任何 GC root 引用的 Store 路径
+sudo nix-collect-garbage
+
 # 更新全部 flake 输入（只修改 flake.lock）
 nix flake update --flake <repo>
 
@@ -60,6 +72,8 @@ sudo nix store optimise
 $ flake: echo ~/nixos-config#nixos
 $ repo: echo ~/nixos-config
 $ result: echo ./result
-$ input: printf "nixpkgs\nhome-manager"
+$ generations: echo 1 2
+$ age: echo 14d
+$ input: printf "dotfiles\nixpkgs\nhome-manager"
 $ query: echo chromium
 $ package: echo fastfetch
