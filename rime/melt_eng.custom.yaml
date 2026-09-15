@@ -1,0 +1,4 @@
+patch:
+  # Adapt English candidates to natural-code double pinyin.
+  "speller/algebra":
+    __include: algebra_double_pinyin

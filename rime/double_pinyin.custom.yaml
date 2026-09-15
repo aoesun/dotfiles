@@ -1,0 +1,6 @@
+patch:
+  # The third switch selects simplified or traditional Chinese.
+  "switches/@2/reset": 0
+  "menu/page_size": 7
+  # Show the raw double-pinyin code instead of expanding it to full pinyin.
+  "translator/preedit_format": []
