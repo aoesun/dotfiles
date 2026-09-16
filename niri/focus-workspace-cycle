@@ -21,17 +21,19 @@ read -r output current < <(
 if [[ "$direction" == down ]]; then
   target=$(
     jq -r --arg output "$output" --argjson current "$current" '
-      [.[] | select(.output == $output) | .idx] | sort |
+      [.[] | select(.output == $output and .active_window_id != null) | .idx] | sort |
       (map(select(. > $current)) | first) // first
     ' <<<"$workspaces"
   )
 else
   target=$(
     jq -r --arg output "$output" --argjson current "$current" '
-      [.[] | select(.output == $output) | .idx] | sort |
+      [.[] | select(.output == $output and .active_window_id != null) | .idx] | sort |
       (map(select(. < $current)) | last) // last
     ' <<<"$workspaces"
   )
 fi
+
+[[ "$target" == null ]] && exit 0
 
 niri msg action focus-workspace "$target"
