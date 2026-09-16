@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+direction=${1:-}
+
+case "$direction" in
+  up | down) ;;
+  *)
+    printf 'usage: %s up|down\n' "${0##*/}" >&2
+    exit 2
+    ;;
+esac
+
+workspaces=$(niri msg -j workspaces)
+
+read -r output current < <(
+  jq -r '.[] | select(.is_focused) | [.output, .idx] | @tsv' <<<"$workspaces"
+)
+
+if [[ "$direction" == down ]]; then
+  target=$(
+    jq -r --arg output "$output" --argjson current "$current" '
+      [.[] | select(.output == $output) | .idx] | sort |
+      (map(select(. > $current)) | first) // first
+    ' <<<"$workspaces"
+  )
+else
+  target=$(
+    jq -r --arg output "$output" --argjson current "$current" '
+      [.[] | select(.output == $output) | .idx] | sort |
+      (map(select(. < $current)) | last) // last
+    ' <<<"$workspaces"
+  )
+fi
+
+niri msg action focus-workspace "$target"
