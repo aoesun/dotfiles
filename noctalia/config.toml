@@ -1,0 +1,122 @@
+[backdrop]
+blur_intensity = 0.5
+enabled = true
+tint_intensity = 0.3
+
+[bar.default]
+background_opacity = 0.5
+capsule = true
+capsule_opacity = 0.5
+center = [ "clock", "taskbar" ]
+contact_shadow = true
+end = [ "media", "tray", "notifications", "clipboard", "bluetooth", "volume", "ram", "control-center", "session" ]
+layer = "overlay"
+margin_ends = 0
+
+[calendar]
+enabled = true
+
+    [calendar.account.personal_google]
+    type = "google"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = [ "desktop-widget-0000000000000001" ]
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 959.00006103515625
+    cy = 463.00003051757812
+    output = "Virtual-1"
+    placement_height = 926.0
+    placement_width = 1918.0
+    rotation = 0.0
+    type = "fancy_audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        background = false
+        visualization_mode = "bars_rings"
+
+[location]
+address = "japan,kawasaki"
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@Virtual-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 959.00018310546875
+    cy = 744.0001220703125
+    output = "Virtual-1"
+    placement_height = 926.0
+    placement_width = 1918.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@Virtual-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[plugin_settings."noctalia/translator"]
+target_lang = "zh"
+
+[plugins]
+enabled = [ "noctalia/translator" ]
+
+[shell]
+font_family = "FiraCode Nerd Font Propo"
+lang = "zh-Hans"
+niri_overview_type_to_launch_enabled = true
+panel_anchor_bar = "default"
+settings_show_advanced = true
+settings_window_translucent = true
+
+    [shell.launcher]
+    show_app_actions = true
+
+    [shell.panel]
+    open_near_click_control_center = true
+    transparency_mode = "glass"
+
+    [shell.screenshot]
+    annotate = true
+    confirm_region = true
+
+[theme]
+builtin = "Nord"
+community_palette = "Vesper"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "m3-content"
+
+[wallpaper]
+enabled = true
+
+    [wallpaper.default]
+    path = "/home/ryuk/nixos-config/wallpaper.png"
