@@ -119,4 +119,4 @@ wallpaper_scheme = "m3-content"
 enabled = true
 
     [wallpaper.default]
-    path = "/home/ryuk/nixos-config/wallpaper.png"
+    path = "/home/ryuk/dotfiles/noctalia/wallpaper.png"
