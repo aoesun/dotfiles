@@ -1,0 +1,15 @@
+[mgr]
+show_hidden = true
+sort_by = "natural"
+sort_dir_first = true
+linemode = "size"
+
+[opener]
+helix = [
+  { run = 'hx "$@"', desc = "Helix", block = true, for = "unix" },
+]
+
+[open]
+prepend_rules = [
+  { mime = "text/*", use = ["edit", "helix", "reveal"] },
+]
