@@ -8,8 +8,12 @@ linemode = "size"
 helix = [
   { run = 'hx "$@"', desc = "Helix", block = true, for = "unix" },
 ]
+qbittorrent = [
+  { run = 'qbittorrent "$@"', desc = "qBittorrent", orphan = true, for = "unix" },
+]
 
 [open]
 prepend_rules = [
   { mime = "text/*", use = ["edit", "helix", "reveal"] },
+  { mime = "application/bittorrent", use = ["open", "qbittorrent", "reveal"] },
 ]
