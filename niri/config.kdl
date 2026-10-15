@@ -49,6 +49,7 @@ overview {
 }
 
 spawn-at-startup "noctalia"
+spawn-at-startup "niriusd"
 
 hotkey-overlay {
     skip-at-startup
@@ -133,10 +134,18 @@ binds {
     Mod+Shift+Ctrl+Up { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
 
-    Mod+Page_Down hotkey-overlay-title="Switch Workspace Down" { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle down"; }
-    Mod+Page_Up hotkey-overlay-title="Switch Workspace Up" { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle up"; }
-    Mod+U { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle down"; }
-    Mod+I { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle up"; }
+    // Seamless workspace cycling is disabled for now: nirius scratchpad
+    // windows create extra workspaces that the script does not skip yet.
+    // Native actions are used meanwhile. Restore the commented script binds
+    // once focus-workspace-cycle ignores scratchpad-only workspaces.
+    Mod+Page_Down hotkey-overlay-title="Switch Workspace Down" { focus-workspace-down; }
+    Mod+Page_Up hotkey-overlay-title="Switch Workspace Up" { focus-workspace-up; }
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+    // Mod+Page_Down hotkey-overlay-title="Switch Workspace Down" { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle down"; }
+    // Mod+Page_Up hotkey-overlay-title="Switch Workspace Up" { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle up"; }
+    // Mod+U { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle down"; }
+    // Mod+I { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle up"; }
     Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
     Mod+Ctrl+Page_Up { move-column-to-workspace-up; }
     Mod+Ctrl+U { move-column-to-workspace-down; }
@@ -144,8 +153,11 @@ binds {
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up { move-workspace-up; }
 
-    Mod+WheelScrollDown cooldown-ms=150 { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle down"; }
-    Mod+WheelScrollUp cooldown-ms=150 { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle up"; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    // Script versions, disabled together with the binds above:
+    // Mod+WheelScrollDown cooldown-ms=150 { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle down"; }
+    // Mod+WheelScrollUp cooldown-ms=150 { spawn "bash" "-lc" "~/dotfiles/niri/focus-workspace-cycle up"; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
@@ -186,6 +198,9 @@ binds {
     Mod+V { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
     Mod+W { toggle-column-tabbed-display; }
+
+    Mod+Grave hotkey-overlay-title="Stash Window to Scratchpad" { spawn "nirius" "scratchpad-toggle"; }
+    Mod+Shift+Grave hotkey-overlay-title="Show or Hide Scratchpad" { spawn "nirius" "scratchpad-show"; }
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
