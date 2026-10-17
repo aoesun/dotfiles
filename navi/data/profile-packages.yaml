@@ -1,0 +1,23 @@
+# nixpkgs
+- { name: aria2, desc: 多线程下载器 }
+- { name: ariang, desc: aria2 的网页前端 }
+- { name: ffmpeg, desc: 音视频转码与处理 }
+- { name: helix, desc: 模态终端编辑器 }
+- { name: opencode, desc: 终端 AI 编码助手 }
+- { name: parabolic, desc: 视频下载图形界面 }
+- { name: protonvpn-gui, desc: Proton VPN 图形客户端 }
+- { name: qbittorrent, desc: BT 下载（图形界面） }
+- { name: qbittorrent-nox, desc: BT 下载（无界面） }
+- { name: varia, desc: 下载管理器图形界面 }
+- { name: warpd, desc: 键盘控制鼠标指针 }
+- { name: yt-dlp, desc: 在线视频下载 }
+
+# nixpkgs, unfree (needs --impure)
+- { name: codex, desc: codex, unfree: true }
+
+# Third-party flakes (ref is the full installable)
+- { name: herdr, desc: 第三方 flake, ref: "github:herdrdev/herdr" }
+- { name: luvus, desc: 第三方 flake, ref: "github:RizRiyz/luvus" }
+- { name: nix-claude-code, desc: Claude Code, ref: "github:ryoppippi/nix-claude-code" }
+- { name: pi-nix, desc: AI Agent, ref: "github:sadjow/pi-nix" }
+- { name: spotify-spiced, desc: Spotify（Spicetify 定制）, ref: "git+file:///home/ryuk/nixos-config#spotify-spiced" }

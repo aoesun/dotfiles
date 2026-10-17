@@ -1,0 +1,35 @@
+% nix, profile, install
+
+; Candidates are read from data/profile-packages.json. To add software,
+; append one object there; see the fields name, desc, ref and unfree.
+
+# 安装软件到 profile（nixpkgs 或第三方 flake）
+nix profile add <package>
+
+# 安装 unfree 软件到 profile（需要 --impure）
+NIXPKGS_ALLOW_UNFREE=1 nix profile add --impure <unfree_package>
+
+# 列出 profile 里已安装的软件
+nix profile list
+
+# 移除 profile 里的一个软件
+nix profile remove <installed>
+
+# 升级 profile 里的一个软件
+nix profile upgrade <installed>
+
+# 升级 profile 里的全部软件
+nix profile upgrade --all
+
+# 检查软件清单 YAML 是否合法，并显示条目数量
+yq -o=json '.' ~/dotfiles/navi/data/profile-packages.yaml | jq 'length'
+
+# 检查软件清单里有没有重复的 name（无输出表示没有重复）
+yq -o=json '.' ~/dotfiles/navi/data/profile-packages.yaml | jq -r '.[].name' | sort | uniq -d
+
+# 检查软件清单里缺少 name 或 desc 的条目（无输出表示都完整）
+yq -o=json '.' ~/dotfiles/navi/data/profile-packages.yaml | jq -c '.[] | select((.name // "") == "" or (.desc // "") == "")'
+
+$ package: yq -o=json '.' ~/dotfiles/navi/data/profile-packages.yaml | jq -r '.[] | select(.unfree != true) | [.name, (.ref // ("nixpkgs#" + .name)), .desc] | @tsv' | column -t -s "$(printf '\t')" --- --column 2 --fzf-overrides '--print-query'
+$ unfree_package: yq -o=json '.' ~/dotfiles/navi/data/profile-packages.yaml | jq -r '.[] | select(.unfree == true) | [.name, (.ref // ("nixpkgs#" + .name)), .desc] | @tsv' | column -t -s "$(printf '\t')" --- --column 2 --fzf-overrides '--print-query'
+$ installed: nix profile list | sed -n 's/^Name:[[:space:]]*//p' --- --fzf-overrides '--print-query'
