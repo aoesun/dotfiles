@@ -202,9 +202,11 @@ binds {
     Mod+Grave hotkey-overlay-title="Stash Window to Scratchpad" { spawn "nirius" "scratchpad-toggle"; }
     Mod+Shift+Grave hotkey-overlay-title="Show or Hide Scratchpad" { spawn "nirius" "scratchpad-show"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    Print hotkey-overlay-title="Screenshot Region: Noctalia" { spawn-sh "noctalia msg screenshot-region"; }
+    Ctrl+Print hotkey-overlay-title="Screenshot Screen: Noctalia" { spawn-sh "noctalia msg screenshot-fullscreen"; }
+    Shift+Print hotkey-overlay-title="Screenshot and Annotate: Noctalia" { spawn-sh "noctalia msg screenshot-annotate"; }
     Alt+Print { screenshot-window; }
+    Mod+Print { screenshot; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+E hotkey-overlay-title="Session Menu" { spawn-sh "noctalia msg panel-toggle session"; }
     Ctrl+Alt+Delete { quit; }
