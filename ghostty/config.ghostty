@@ -1,3 +1,6 @@
-# Toggle a persistent drop-down terminal from anywhere in the Niri session.
-keybind = global:super+delete=toggle_quick_terminal
-quick-terminal-size = 40%,100%
+# Toggled from niri with `ghostty +toggle-quick-terminal`; a global: keybind
+# cannot be registered because niri has no GlobalShortcuts portal support yet.
+quick-terminal-position = center
+quick-terminal-size = 60%,80%
+# Make the terminal background slightly translucent.
+background-opacity = 0.98

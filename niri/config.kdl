@@ -86,6 +86,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+X hotkey-overlay-title="Clipboard History" { spawn-sh "noctalia msg panel-toggle clipboard"; }
     Mod+T hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "ghostty"; }
+    Mod+Delete hotkey-overlay-title="Toggle Quick Terminal" { spawn "ghostty" "+toggle-quick-terminal"; }
     Mod+E hotkey-overlay-title="Open a File Manager: Nautilus" { spawn "nautilus"; }
     Mod+D hotkey-overlay-title="Run an Application: Noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S hotkey-overlay-title="Open Control Center" { spawn-sh "noctalia msg panel-toggle control-center"; }
