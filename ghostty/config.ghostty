@@ -2,5 +2,7 @@
 # cannot be registered because niri has no GlobalShortcuts portal support yet.
 quick-terminal-position = center
 quick-terminal-size = 60%,80%
+# Use Maple Mono for terminal text; its CJK glyphs are exactly two cells wide.
+font-family = "Maple Mono NF CN"
 # Make the terminal background slightly translucent.
 background-opacity = 0.98
